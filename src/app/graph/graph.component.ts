@@ -83,13 +83,13 @@ this.graficoLegend = this.database.list(this.tipoCaderno ).snapshotChanges().map
 
 
 this.graficoLegend.forEach(item => { 
-  console.log('item',item);
+  //console.log('item',item);
 
   let aux = Object.keys(item[0].questions).length;
   
   for(let x=0;x<aux;x++) {
    
-        console.log(Object.keys(item[0].questions));
+       // console.log(Object.keys(item[0].questions));
           this.dadosLegenda.push(Object.keys(item[0].questions)[x]);
           let my_obj = Object.create({}, { getFoo: { value: function() { return this.nome, this.valor;  } } });        
           my_obj.nome = Object.keys(item[0].questions)[x];
@@ -100,15 +100,15 @@ this.graficoLegend.forEach(item => {
 
     
 }
-console.log(this.series);
+//console.log(this.series);
 
 });
-/*
+
 ///===========LINE===========
-this.graficoLegendLineSimulado = this.database.list('simulado/').snapshotChanges().map(arr => {
+this.graficoLegendLineSimulado = this.database.list('simulados/').snapshotChanges().map(arr => {
   return arr.map(snap => Object.assign(snap.payload.val(), { $key: snap.key }) )
 });
-this.graficoLegendLineProva = this.database.list('prova/').snapshotChanges().map(arr => {
+this.graficoLegendLineProva = this.database.list('provas/').snapshotChanges().map(arr => {
   return arr.map(snap => Object.assign(snap.payload.val(), { $key: snap.key }) )
 });
 
@@ -123,7 +123,7 @@ this.graficoLegendLineProva.forEach(item =>{
   let totalValores:any = [];
 
   for(let x = 0;x<item.length;x++){
-    this.categoryLine.push(item[x].$key);
+    this.categoryLine.push(item[x].ano);
     
   }
   for(let y= 0 ; y< validaValores.length;y++){
@@ -132,13 +132,15 @@ this.graficoLegendLineProva.forEach(item =>{
 
   for(let x = 0;x<item.length;x++){
     aux = 0;   
-    
-      for(let y = 0;y<Object.values(Object.values(item[x])).length -1;y++){
-        aux +=  Object.keys(Object.values(Object.values(item[x]))[y]).length;
+    console.log('itens',item[x])  
+    console.log('objeto',Object.values(Object.values(item[x].questions)))
+      for(let y = 0;y<Object.values(Object.values(item[x].questions)).length ;y++){
+       
+        aux +=  Object.keys(Object.values(Object.values(item[x].questions))[y]).length;
   
       }   
      
-      totalValores[validaValores.indexOf(Number(item[x].$key))] = aux;     
+      totalValores[validaValores.indexOf(Number(item[x].ano))] = aux;     
 
       my_obj.valor =  totalValores ;     
    
@@ -159,7 +161,7 @@ this.graficoLegendLineSimulado.forEach(item =>{
   let totalValores:any = [];
 
   for(let x = 0;x<item.length;x++){
-    this.categoryLine.push(item[x].$key);
+    this.categoryLine.push(item[x].ano);
     
   }
   for(let y= 0 ; y< validaValores.length;y++){
@@ -169,20 +171,20 @@ this.graficoLegendLineSimulado.forEach(item =>{
   for(let x = 0;x<item.length;x++){
     aux = 0;   
 
-      for(let y = 0;y<Object.values(Object.values(item[x])).length -1;y++){
-        aux +=  Object.keys(Object.values(Object.values(item[x]))[y]).length;
+      for(let y = 0;y<Object.values(Object.values(item[x].questions)).length ;y++){
+        aux +=  Object.keys(Object.values(Object.values(item[x].questions))[y]).length;
    
       }
 
-      totalValores[validaValores.indexOf(Number(item[x].$key))] = aux;    
+      totalValores[validaValores.indexOf(Number(item[x].ano))] = aux;    
       my_obj.valor =  totalValores ;     
   
   }
   this.seriesLine.push(my_obj);
  
 });
-//console.log('se', this.seriesLine)
-*/
+console.log('se', this.seriesLine)
+
 }
 
 
