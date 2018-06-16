@@ -4,8 +4,8 @@
             <div class = 'col-md-2' >
                 <label class = 'label'>Caderno:</label>
                 <select [(ngModel)] = 'tipoCaderno' (change) = 'changeTipoCaderno()' class = 'select'>
-                    <option value="simulado">Simulado</option>
-                    <option value="prova">Prova</option>
+                    <option value="simulados">Simulado</option>
+                    <option value="provas">Prova</option>
                 </select>
             </div>  
             <div class = 'col-md-2'>
@@ -50,7 +50,7 @@
 </div>
 </div>
 </div>
-
+{{year}}
 <ng-template #content let-c="close" let-d="dismiss">
 
 
@@ -73,12 +73,12 @@
                 </tr>
             </thead>
             <tbody>
-                <tr *ngFor = 'let x of perguntasModal | async'>
+                <tr *ngFor = 'let x of pergModal '>
                     <td>{{x.pergunta}}</td>          
-                    <td>{{x.respostas.resposta1}}</td>          
-                    <td>{{x.respostas.resposta2}}</td>     
-                    <td>{{x.respostas.resposta3}}</td>     
-                    <td>{{x.respostas.resposta4}}</td>     
+                    <td>{{x.respostas.a.descricao}}</td>          
+                    <td>{{x.respostas.b.descricao}}</td>     
+                    <td>{{x.respostas.c.descricao}}</td>     
+                    <td>{{x.respostas.d.descricao}}</td>     
                 </tr>       
             </tbody>
         </table>

@@ -12,10 +12,11 @@ import { exportPDF } from '@progress/kendo-drawing/pdf';
   styleUrls: ['./graph.component.scss']
 })
 export class GraphComponent implements OnInit {
-  tipoCaderno:string = "simulado";
+  tipoCaderno:string = "simulados";
   itemYear:any = [];
   closeResult: string;
-  year:string = this.itemYear[0];
+  chaveAno :string;
+  year:any = this.itemYear[0];
   perguntas: Observable<any[]>;
   perguntasModal: Observable<any[]>;
   dataYear:any = new Date().getFullYear();
@@ -28,6 +29,7 @@ export class GraphComponent implements OnInit {
   dadosSeries:Array<any> = [];
   series = [];
   showChart:boolean = false;
+  pergModal:any;
   //======================
   //======chart line======
   graficoLegendLineSimulado: Observable<any[]>;
@@ -48,7 +50,6 @@ export class GraphComponent implements OnInit {
  }
 this.yearTotalSelectSort=this.yearTotalSelect.sort();
  // =============SELECT===================
-
    this.perguntas = this.database.list(this.tipoCaderno).snapshotChanges().map(arr => {
       return arr.map(snap => Object.assign(snap.payload.val(), { $key: snap.key }) )
     }); 
@@ -56,10 +57,12 @@ this.yearTotalSelectSort=this.yearTotalSelect.sort();
 this.perguntas.forEach(item => { 
   
   for(let x in item){        
-    this.itemYear.push(item[x].$key);        
+    this.itemYear.push( item[x].ano );        
     }   
-    this.year = item[0].$key;
+    this.year = item[0].ano;
 });
+
+
 
 }
 
@@ -72,29 +75,36 @@ consultar(){
   this.seriesLine = [];
   this.categoryLine = [];
  
-this.graficoLegend = this.database.list(this.tipoCaderno + '/',ref => ref.orderByKey().equalTo(this.year)).snapshotChanges().map(arr => {
-  return arr.map(snap => Object.assign(snap.payload.val(), { $key: snap.key }) )
-});
-this.graficoLegend.forEach(item => { 
+this.graficoLegend = this.database.list(this.tipoCaderno ).snapshotChanges().map(arr => {
 
-  let aux = Object.keys(item[0]).length - 1;
+  return arr.map(snap => Object.assign(snap.payload.val(), { $key: snap.key })).filter(i =>  Number(i.ano) ===  Number(this.year)   )
+}); 
+
+
+
+this.graficoLegend.forEach(item => { 
+  console.log('item',item);
+
+  let aux = Object.keys(item[0].questions).length;
   
   for(let x=0;x<aux;x++) {
    
-        if( Object.keys(item[0])[x] !== '$key'){
-          this.dadosLegenda.push(Object.keys(item[0])[x]);
+        console.log(Object.keys(item[0].questions));
+          this.dadosLegenda.push(Object.keys(item[0].questions)[x]);
           let my_obj = Object.create({}, { getFoo: { value: function() { return this.nome, this.valor;  } } });        
-          my_obj.nome = Object.keys(item[0])[x];
+          my_obj.nome = Object.keys(item[0].questions)[x];
          
-          my_obj.valor =JSON.parse("[" +  Object.keys(Object.values(item[0] )[x]).length + "]");
+          my_obj.valor =JSON.parse("[" +  Object.keys(Object.values(item[0].questions )[x]).length + "]");
           this.series.push(my_obj);
-    }
+    
 
     
 }
-});
-///===========LINE===========
+console.log(this.series);
 
+});
+/*
+///===========LINE===========
 this.graficoLegendLineSimulado = this.database.list('simulado/').snapshotChanges().map(arr => {
   return arr.map(snap => Object.assign(snap.payload.val(), { $key: snap.key }) )
 });
@@ -103,7 +113,6 @@ this.graficoLegendLineProva = this.database.list('prova/').snapshotChanges().map
 });
 
 //PROVA LINE
-
 this.graficoLegendLineProva.forEach(item =>{
   this.categoryLine = [];
   let aux = 0;
@@ -173,11 +182,13 @@ this.graficoLegendLineSimulado.forEach(item =>{
  
 });
 //console.log('se', this.seriesLine)
-
+*/
 }
+
 
 changeYear(){
   this.showChart = false;
+ 
 }
 
  changeTipoCaderno(){
@@ -193,22 +204,26 @@ this.itemYear = [];
 this.perguntas.forEach(item => { 
      
   for(let x in item){        
-    this.itemYear.push(item[x].$key);        
+    this.itemYear.push(item[x].ano);        
     }   
-    this.year = item[0].$key;
+    this.year =item[0].ano ;
 });
 //=======================================
-
 
  }
  clickChart(event,content){
   this.nameDisciplinaModal = event.series.name;
+  console.log(event)
   this.open(content);
  
-  this.perguntasModal = this.database.list(this.tipoCaderno + '/' + this.year + '/' + event.series.name).snapshotChanges().map(arr => {
-    return arr.map(snap => Object.assign(snap.payload.val(), { $key: snap.key }) )
+  this.perguntasModal = this.database.list(this.tipoCaderno).snapshotChanges().map(arr => {
+    return arr.map(snap => Object.assign(snap.payload.val(), { $key: snap.key }) ).filter(i =>  Number(i.ano) ===  Number(this.year)   ).map(u => u.questions[this.nameDisciplinaModal])
   });
+this.perguntasModal.forEach(item => {
+  console.log(item)
+  this.pergModal = item[0];
 
+})
  }
 
  open(content) {
@@ -232,11 +247,10 @@ private getDismissReason(reason: any): string {
  
   
 
-
   ngOnInit() {
     
    
-
+   
  
  
     
