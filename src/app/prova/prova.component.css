@@ -1,0 +1,97 @@
+* {
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #f1f1f1;
+    font-family: 'Open Sans', sans-serif;
+}
+label{
+    margin-bottom: .1rem;
+}
+table{
+    border: 1px solid #e4e7ea;
+}
+.reg {
+    background-color: #fbfbfb;
+    margin: 20px 0;
+    font-family: 'Open Sans', sans-serif;
+    padding: 20px 40px;
+    min-width: 300px;
+    border: 2px solid #efefef;
+}
+
+h1 {
+    text-align: center;
+    text-transform: uppercase;
+    font-weight: bold;
+    margin-bottom: 30px;
+}
+
+input {
+    padding: 10px;
+    width: 100%;
+    font-size: 17px;
+    font-family: Raleway;
+
+}
+
+button:hover {
+    opacity: 0.8;
+}
+
+#prevBtn {
+    background-color: #bbbbbb;
+}
+
+
+/* Make circles that indicate the steps of the form: */
+.step {
+    height: 15px;
+    width: 15px;
+    margin: 0 2px;
+    background-color: #bbbbbb;
+    border: none;  
+    border-radius: 50%;
+    display: inline-block;
+    opacity: 0.5;
+}
+
+.active{
+    opacity: 1;
+}
+.finish {
+    background-color: #4CAF50;
+}
+
+#select{
+    margin-top:10px;
+    font-size:14px;
+    color: black;
+    font-family: 'Open Sans', sans-serif;
+}
+
+select{
+
+    width: 250px; /* Tamanho do select, maior que o tamanho da div "div-select" */
+    height:30px; /* Altura do select, importante para que tenha a mesma altura em todo os navegadores */
+    border:1px solid #ddd;
+
+}
+.nav.nav-tabs.justify-content-start{
+    margin-bottom:15px
+}
+
+
+/* Aparência que terá o seletor de arquivo */
+input[type='file'] {
+    display: none
+}
+
+.modal-content .nav-link{
+    padding: 0.1rem 0.7rem;
+    border-radius: 1px;
+}
+.modal-content .updateBorder{
+    margin-top: 20px;
+}
