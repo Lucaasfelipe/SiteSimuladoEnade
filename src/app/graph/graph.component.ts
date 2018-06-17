@@ -132,8 +132,8 @@ this.graficoLegendLineProva.forEach(item =>{
 
   for(let x = 0;x<item.length;x++){
     aux = 0;   
-    console.log('itens',item[x])  
-    console.log('objeto',Object.values(Object.values(item[x].questions)))
+    //console.log('itens',item[x])  
+    //console.log('objeto',Object.values(Object.values(item[x].questions)))
       for(let y = 0;y<Object.values(Object.values(item[x].questions)).length ;y++){
        
         aux +=  Object.keys(Object.values(Object.values(item[x].questions))[y]).length;
@@ -183,7 +183,7 @@ this.graficoLegendLineSimulado.forEach(item =>{
   this.seriesLine.push(my_obj);
  
 });
-console.log('se', this.seriesLine)
+//console.log('se', this.seriesLine)
 
 }
 
@@ -215,14 +215,14 @@ this.perguntas.forEach(item => {
  }
  clickChart(event,content){
   this.nameDisciplinaModal = event.series.name;
-  console.log(event)
+ // console.log(event)
   this.open(content);
  
   this.perguntasModal = this.database.list(this.tipoCaderno).snapshotChanges().map(arr => {
     return arr.map(snap => Object.assign(snap.payload.val(), { $key: snap.key }) ).filter(i =>  Number(i.ano) ===  Number(this.year)   ).map(u => u.questions[this.nameDisciplinaModal])
   });
 this.perguntasModal.forEach(item => {
-  console.log(item)
+ // console.log(item)
   this.pergModal = item[0];
 
 })

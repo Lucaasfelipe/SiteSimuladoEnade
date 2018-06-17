@@ -132,7 +132,7 @@ export class SimuladoComponent implements OnInit {
       this.dataYear--;
     }
 
-    
+    this.selectAno();
 }
 
 getChaveAno(chave){
@@ -341,6 +341,7 @@ private getDismissReason(reason: any): string {
 // MUDAR DE PÁGINA
   
 next(number:number){
+  this.selectAno();
   if(this.pergunta !== undefined && this.currentTab === 0 && number !== -1 && this.pergunta !== "" ){
   this.currentTab = this.currentTab + number;
   
@@ -503,7 +504,7 @@ antes
     //  this.validaDisciplina
    // )
    this.setDisciplina(this.retornaJSONValida()).then(resolve =>{
-     console.log(this.validaDisciplina);
+    // console.log(this.validaDisciplina);
    
      this.database.object('simulados/' + this.chaveAno + '/questions/' + this.disciplina).set(
       
@@ -646,7 +647,7 @@ antes
      
         for(let x = 0; x < this.result.length;x++){
           
-          console.log(this.result);
+         // console.log(this.result);
 
          
             let dados1 = {  
@@ -736,7 +737,7 @@ antes
            
   
   if(this.chaveAno == undefined || this.chaveAno == null){
-   console.log('erro1')
+   //console.log('erro1')
    this.getKey(dados);
     this.validaDisciplina.push(this.retornaJSONExecel(x));
   }
@@ -762,7 +763,7 @@ antes
    
     
   }else{*/
-    console.log('erro');
+    //console.log('erro');
     this.validaDisciplina.push(this.retornaJSONExecel(x));
     this.database.object('simulados/' + this.chaveAno + '/questions/' + this.disciplina).set(
       
@@ -843,7 +844,7 @@ this.selectAno();
       this.valueChanges.forEach(e=>{
         
         this.validaDisciplina = e
-        console.log('array', this.validaDisciplina);
+       // console.log('array', this.validaDisciplina);
       });
 
 

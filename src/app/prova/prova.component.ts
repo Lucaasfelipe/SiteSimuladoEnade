@@ -138,7 +138,7 @@ export class ProvaComponent implements OnInit {
 
 getChaveAno(chave){
   return new Promise(resolve => {
-    console.log('chave',chave);
+    //console.log('chave',chave);
     if(chave != undefined || chave != null){
     this.chaveAno = chave.$key;
     
@@ -189,7 +189,7 @@ selectAno(){
     return arr.map(snap => Object.assign(snap.payload.val(), { $key: snap.key }) ).filter(i => i.ano == this.valueYear)
   });
   this.aux.take(1).forEach(item => {
-    console.log('item', item);
+    //console.log('item', item);
     //this.chaveAno = item[0].$key;
     this.getChaveAno(item[0]);
     if(item.length > 0){
@@ -215,7 +215,7 @@ selectAno(){
      
       this.validaDisciplina = e
      // console.log('array', this.validaDisciplina);
-     console.log(this.validaDisciplina);
+     //console.log(this.validaDisciplina);
     });
     
   }
@@ -231,7 +231,7 @@ open(content, item) {
   }, (reason) => {
     this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
   });
-  console.log("item:", item);
+ //console.log("item:", item);
   this.respostaCorretaBackground = item.resposta_correta;
   this.perguntaEditar = item.pergunta;
   this.resposta1Editar = item.respostas.a.descricao
@@ -311,7 +311,7 @@ private getDismissReason(reason: any): string {
   }
 
   delete(key:string){
-   console.log(key);
+   //console.log(key);
    let chaveAno =  this.database.list('provas/',ref => ref.orderByChild('ano').equalTo(this.valueYear)).snapshotChanges().map(arr => {
     return arr.map(snap => Object.assign(snap.payload.val(), { $key: snap.key }) )
   }).take(1).forEach(item => {
@@ -504,7 +504,7 @@ antes
     //  this.validaDisciplina
    // )
    this.setDisciplina(this.retornaJSONValida()).then(resolve =>{
-     console.log(this.validaDisciplina);
+     //console.log(this.validaDisciplina);
    
      this.database.object('provas/' + this.chaveAno + '/questions/' + this.disciplina).set(
       
@@ -647,7 +647,7 @@ antes
      
         for(let x = 0; x < this.result.length;x++){
           
-          console.log(this.result);
+         // console.log(this.result);
 
          
             let dados1 = {  
@@ -737,7 +737,7 @@ antes
            
   
   if(this.chaveAno == undefined || this.chaveAno == null){
-   console.log('erro1')
+   //console.log('erro1')
    this.getKey(dados);
     this.validaDisciplina.push(this.retornaJSONExecel(x));
   }
@@ -763,7 +763,7 @@ antes
    
     
   }else{*/
-    console.log('erro');
+    //console.log('erro');
     this.validaDisciplina.push(this.retornaJSONExecel(x));
     this.database.object('provas/' + this.chaveAno + '/questions/' + this.disciplina).set(
       
@@ -844,7 +844,7 @@ this.selectAno();
       this.valueChanges.forEach(e=>{
         
         this.validaDisciplina = e
-        console.log('array', this.validaDisciplina);
+      //  console.log('array', this.validaDisciplina);
       });
 
 
