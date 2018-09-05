@@ -1,4 +1,4 @@
-import {Routes, RouterModule} from '@angular/router';
+import { Routes, RouterModule } from '@angular/router';
 import { SimuladoComponent } from './simulado/simulado.component';
 import { ProvaComponent } from './prova/prova.component';
 import { ModuleWithProviders } from '@angular/core';
@@ -12,12 +12,11 @@ import { GraphComponent } from './graph/graph.component';
 
 
 const APP_ROUTES: Routes = [
-    {path: '', component: LoginComponent},
-    {path: 'cadastro', component: RegistroComponent},
-    {path: 'prova', component: ProvaComponent,canActivate:[AuthGuardService]},
-    {path: 'simulado', component: SimuladoComponent,canActivate:[AuthGuardService]},
-    {path: 'dashboard', component: GraphComponent,canActivate:[AuthGuardService]}
-
+    { path: '', component: LoginComponent },
+    { path: 'cadastro', component: RegistroComponent },
+    { path: 'prova', component: ProvaComponent, canActivate: [AuthGuardService] },
+    { path: 'simulado', component: SimuladoComponent, canActivate: [AuthGuardService] },
+    { path: 'dashboard', component: GraphComponent, canActivate: [AuthGuardService] }
 ];
 
 export const routing: ModuleWithProviders = RouterModule.forRoot(APP_ROUTES);

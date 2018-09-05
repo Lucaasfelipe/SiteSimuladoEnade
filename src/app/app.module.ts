@@ -22,13 +22,6 @@ import { ChartsModule } from '@progress/kendo-angular-charts';
 import 'hammerjs';
 
 const firebaseAuth = {
-  // apiKey: "AIzaSyCwycl6nj3cYiI-L_L86ime09JmDTUzYQE",
-  // authDomain: "base-nova.firebaseapp.com",
-  // databaseURL: "https://base-nova.firebaseio.com",
-  // projectId: "base-nova",
-  // storageBucket: "base-nova.appspot.com",
-  // messagingSenderId: "337720806704"
-
   apiKey: 'AIzaSyA3GZ5i191zGSg0uewrvRlK44DODMQfXvY',
   authDomain: 'siteenade-f8b2c.firebaseapp.com',
   databaseURL: 'https://siteenade-f8b2c.firebaseio.com',
@@ -46,8 +39,6 @@ const firebaseAuth = {
     LoginComponent,
     RegistroComponent,
     GraphComponent
-
-
   ],
   imports: [
     BrowserModule,
@@ -60,8 +51,6 @@ const firebaseAuth = {
     HttpModule,
     BrowserAnimationsModule,
     ChartsModule
-
-
   ],
   providers: [AuthGuardService, XlsxToJsonServiceService, AuthService],
   bootstrap: [AppComponent]
