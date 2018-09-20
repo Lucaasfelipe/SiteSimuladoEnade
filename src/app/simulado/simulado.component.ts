@@ -26,10 +26,12 @@ export class SimuladoComponent implements OnInit {
   resposta2: string;
   resposta3: string;
   resposta4: string;
+  resposta5: string;
   justificativaresposta1: string = null;
   justificativaresposta2: string = null;
   justificativaresposta3: string = null;
   justificativaresposta4: string = null;
+  justificativaresposta5: string = null;
   active = 'active';
   finish = 'finish';
   perguntas: Observable<any[]>;
@@ -43,10 +45,12 @@ export class SimuladoComponent implements OnInit {
   resposta2Editar: string;
   resposta3Editar: string;
   resposta4Editar: string;
+  resposta5Editar: string;
   justificativaresposta1Editar: string;
   justificativaresposta2Editar: string;
   justificativaresposta3Editar: string;
   justificativaresposta4Editar: string;
+  justificativaresposta5Editar: string;
   keyEditar: string;
   usuario: any;
   disciplinas: any;
@@ -67,23 +71,13 @@ export class SimuladoComponent implements OnInit {
 
     this.user = this.fire.auth.currentUser.email;
     this.disciplinas = [
-      'Ética',
-      'Filosofia',
-      'Constitucional',
-      'Direito Humanos',
-      'Internacional',
-      'Tributário',
-      'Administrativo',
-      'Ambiental',
-      'Civil',
-      'ECA',
-      'CDC',
-      'Empresarial',
-      'Processo Civil',
-      'Penal',
-      'Processo Penal',
-      'Direito do Trabalho',
-      'Processo do Trabalho'
+      'Administração',
+      'Processos gerenciais',
+      'Gestão comercial',
+      'Gestão de R',
+      'gestão financeira',
+      'Logística',
+      'Gestão da Qualidade'
     ];
     this.disciplina = this.disciplinas[0];
     // LISTA AS PERGUNTAS DO FIREBASE
@@ -254,12 +248,14 @@ export class SimuladoComponent implements OnInit {
     this.resposta2Editar = item.respostas.b.descricao;
     this.resposta3Editar = item.respostas.c.descricao;
     this.resposta4Editar = item.respostas.d.descricao;
+    this.resposta5Editar = item.respostas.e.descricao;
     this.respostaCorretaEditar = item.resposta_correta;
 
     this.justificativaresposta1Editar = item.respostas.a.justificativa;
     this.justificativaresposta2Editar = item.respostas.b.justificativa;
     this.justificativaresposta3Editar = item.respostas.c.justificativa;
     this.justificativaresposta4Editar = item.respostas.d.justificativa;
+    this.justificativaresposta5Editar = item.respostas.e.justificativa;
 
     this.keyEditar = item.$key;
 
@@ -289,6 +285,9 @@ export class SimuladoComponent implements OnInit {
     if (this.justificativaresposta4Editar === undefined || this.justificativaresposta4Editar === '') {
       this.justificativaresposta4Editar = null;
     }
+    if (this.justificativaresposta5Editar === undefined || this.justificativaresposta5Editar === '') {
+      this.justificativaresposta5Editar = null;
+    }
 
     const updates = {};
     updates[`pergunta`] = this.perguntaEditar;
@@ -308,6 +307,10 @@ export class SimuladoComponent implements OnInit {
       },
       'd': {
         'descricao': this.resposta4Editar,
+        'justificativa': this.justificativaresposta4Editar
+      },
+      'e': {
+        'descricao': this.resposta5Editar,
         'justificativa': this.justificativaresposta4Editar
       }
     };
@@ -411,6 +414,9 @@ export class SimuladoComponent implements OnInit {
       if (this.justificativaresposta4 === undefined || this.justificativaresposta4 === '') {
         this.justificativaresposta4 = null;
       }
+      if (this.justificativaresposta5 === undefined || this.justificativaresposta5 === '') {
+        this.justificativaresposta5 = null;
+      }
 
       /*
       let dados = '{' +
@@ -467,6 +473,10 @@ export class SimuladoComponent implements OnInit {
               'd': {
                 'descricao': this.resposta4,
                 'justificativa': this.justificativaresposta4
+              },
+              'e': {
+                'descricao': this.resposta4,
+                'justificativa': this.justificativaresposta5
               }
             }
 
@@ -591,11 +601,13 @@ export class SimuladoComponent implements OnInit {
     this.resposta2 = undefined;
     this.resposta3 = undefined;
     this.resposta4 = undefined;
+    this.resposta5 = undefined;
     this.pergunta = undefined;
     this.justificativaresposta1 = undefined;
     this.justificativaresposta2 = undefined;
     this.justificativaresposta3 = undefined;
     this.justificativaresposta4 = undefined;
+    this.justificativaresposta5 = undefined;
     this.respostaCorreta = undefined;
     this.selectAno();
   }
@@ -620,6 +632,10 @@ export class SimuladoComponent implements OnInit {
         'd': {
           'descricao': this.resposta4,
           'justificativa': this.justificativaresposta4
+        },
+        'e': {
+          'descricao': this.resposta5,
+          'justificativa': this.justificativaresposta5
         }
       }
     }];
@@ -645,6 +661,10 @@ export class SimuladoComponent implements OnInit {
         'd': {
           'descricao': this.resposta4,
           'justificativa': this.justificativaresposta4
+        },
+        'e': {
+          'descricao': this.resposta5,
+          'justificativa': this.justificativaresposta5
         }
       }
     };
@@ -671,6 +691,10 @@ export class SimuladoComponent implements OnInit {
         'd': {
           'descricao': this.result[x].resposta4,
           'justificativa': this.result[x].justificativaresposta4 || null
+        },
+        'e': {
+          'descricao': this.result[x].resposta5,
+          'justificativa': this.result[x].justificativaresposta5 || null
         }
       }
     };
@@ -703,6 +727,10 @@ export class SimuladoComponent implements OnInit {
           'd': {
             'descricao': this.result[x].resposta4,
             'justificativa': this.result[x].justificativaresposta4 || null
+          },
+          'e': {
+            'descricao': this.result[x].resposta5,
+            'justificativa': this.result[x].justificativaresposta5 || null
           }
         }
       };
@@ -728,7 +756,10 @@ export class SimuladoComponent implements OnInit {
             this.result[x].resposta3 === '') ||
           (this.result[x].resposta4 === null ||
             this.result[x].resposta4 === undefined ||
-            this.result[x].resposta4 === '')
+            this.result[x].resposta4 === '') ||
+          (this.result[x].resposta5 === null ||
+            this.result[x].resposta5 === undefined ||
+            this.result[x].resposta5 === '')
         ) {
           this.validacao = 1;
         } else if (this.result[x].respostaCorreta === null ||
@@ -748,7 +779,10 @@ export class SimuladoComponent implements OnInit {
               this.result[x].justificativaresposta3 === '') ||
             (this.result[x].justificativaresposta4 === null ||
               this.result[x].justificativaresposta4 === undefined ||
-              this.result[x].justificativaresposta4 === '')
+              this.result[x].justificativaresposta4 === '') ||
+            (this.result[x].justificativaresposta5 === null ||
+              this.result[x].justificativaresposta5 === undefined ||
+              this.result[x].justificativaresposta5 === '')
           ) {
             this.validacao = 1;
           } else {
@@ -779,6 +813,10 @@ export class SimuladoComponent implements OnInit {
                       'd': {
                         'descricao': this.result[x].resposta4,
                         'justificativa': this.result[x].justificativaresposta4 || null
+                      },
+                      'e': {
+                        'descricao': this.result[x].resposta5,
+                        'justificativa': this.result[x].justificativaresposta5 || null
                       }
                     }
 
