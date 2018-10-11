@@ -1,3 +1,4 @@
+<div id="body">
 <div data-spy="scroll" data-target=".navbar" data-offset="50">  
     <div class="container">
         <div id = 'select'>
@@ -34,7 +35,7 @@
                                     <strong>Sucesso!</strong> O caderno foi inserido corretamente.
                                 </div>
                                 <div class="alert alert-danger" *ngIf = 'validacao === 1'>
-                                    <strong>Erro ao inserir caderdo!</strong> Verifique se a estrutura do arquivo xls está correto.
+                                    <strong>Erro ao inserir caderno!</strong> Verifique se a estrutura do arquivo xls está correto.
                                 </div>
 
                             </div>
@@ -235,10 +236,11 @@
 
 
 
-
+    
     </div>
     <div class="modal-footer">         
         <button type="button" class="btn btn-success btn-sm" (click)="update()" (click)="c('Close click')">Editar</button>
     </div>
 
 </ng-template>
+</div>

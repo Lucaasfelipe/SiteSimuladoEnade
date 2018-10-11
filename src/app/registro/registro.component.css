@@ -1,3 +1,20 @@
+html {
+  height: 100%;
+  padding-bottom: 3%;
+  background-repeat: no-repeat;
+  background-image: linear-gradient(rgb(0, 144, 212), rgb(255, 255, 255));
+  display: flex;
+  flex-flow: row wrap;
+}
+h1 {
+  text-align:center;
+  font-weight: 1000;
+  font-size: 50px;
+  padding: 100px;
+  color: #191970;
+  padding-top: 10px; 
+  
+  }
 .login-page {
     width: 360px;
     padding: 8% 0 0;
